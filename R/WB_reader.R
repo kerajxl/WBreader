@@ -9,17 +9,19 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-if (!require("tidyverse")) install.packages("tidyverse")
-library(tidyverse)
-if (!require("readxl")) install.packages("readxl")
-library(readxl)
-if (!require("devtools")) install.packages("devtools")
-library(devtools)
-options(scipen=99)
+
 
 #path <- 'Data_Extract_From_World_Development_Indicators.xlsx'
 
 wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE) {
+  if (!require("tidyverse")) install.packages("tidyverse")
+  library(tidyverse)
+  if (!require("readxl")) install.packages("readxl")
+  library(readxl)
+  if (!require("devtools")) install.packages("devtools")
+  library(devtools)
+  options(scipen=99)
+  
   if(extension == 'xlsx'){
     df <- read_excel(path)
   } else if (extension == 'csv'){
