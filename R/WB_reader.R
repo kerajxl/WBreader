@@ -44,7 +44,7 @@ wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, view = FALS
     df <- na.omit(df)
   }
   
-  if(view = TRUE){
+  if(view == TRUE){
     View(df)
   } 
   return(df)
