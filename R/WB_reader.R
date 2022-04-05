@@ -13,7 +13,7 @@
 
 #path <- 'Data_Extract_From_World_Development_Indicators.xlsx'
 
-wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE) {
+wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, view = FALSE) {
   if (!require("tidyverse")) install.packages("tidyverse")
   library(tidyverse)
   if (!require("readxl")) install.packages("readxl")
@@ -43,8 +43,10 @@ wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE) {
   if(keep_NA == FALSE){
     df <- na.omit(df)
   }
-
-  View(df)
+  
+  if(view = TRUE){
+    View(df)
+  } 
   return(df)
 }
 
