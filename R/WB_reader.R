@@ -33,7 +33,7 @@ wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, view = FALS
     drop_na(`Country Code`)
   df <- df %>%
     gather(year_x, value, 4:ncol(df)) %>%
-    spread(`Series Name`, value)  %>%
+    #spread(`Series Name`, value)  %>%
     mutate(year = str_extract(year_x, "[0-9]{4}")) %>%
     select(-year_x)
   df <- df[,c(1,2,ncol(df),4:ncol(df)-1)]
