@@ -1,27 +1,21 @@
+if (!require("tidyverse")) install.packages("dplyr")
+library(dplyr)
+if (!require("readxl")) install.packages("readxl")
+library(readxl)
+if (!require("devtools")) install.packages("devtools")
+library(devtools)
+if (!require('countrycode')) install.packages('countrycode')
+library(countrycode)
+options(scipen=99)
 
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
 
 
 
 #path <- 'Data_Extract_From_World_Development_Indicators.xlsx'
 
-wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, view = FALSE) {
-  if (!require("tidyverse")) install.packages("tidyverse")
-  library(tidyverse)
-  if (!require("readxl")) install.packages("readxl")
-  library(readxl)
-  if (!require("devtools")) install.packages("devtools")
-  library(devtools)
-  options(scipen=99)
-  
+wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, preview = FALSE,
+                          iso_coding = '2c', prettyValue = TRUE) {
+
   if(extension == 'xlsx'){
     df <- read_excel(path)
   } else if (extension == 'csv'){
@@ -43,11 +37,27 @@ wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, view = FALS
   if(keep_NA == FALSE){
     df <- na.omit(df)
   }
+ 
+  if(iso_coding == '2c'){
+    df$'Country Code' <- countrycode(df$'Country Name', "country.name", "iso2c")
+    df$'Country Code' <- tolower(df$'Country Code')
+  }
+  df$year <- as.integer(df$year)
   
-  if(view == TRUE){
+  df$value <- as.numeric(df$value)
+  
+  if(prettyValue == TRUE){
+    df <- df %>% 
+      mutate(prettyValue = ifelse(grepl('%',`Series Name`, fixed = TRUE)==TRUE, paste0(round(value*100,2),'%'), 
+                                  format(round(value,0),nsmall = 0, big.mark="'")))
+  }
+   if(preview == TRUE){
     View(df)
-  } 
+  }
+  df$year <- as.integer(df$year)
+  
+  df$value <- as.numeric(df$value)
+ 
+  
   return(df)
 }
-
-
