@@ -48,7 +48,7 @@ wb_read_excel <- function(path, extension = 'xlsx', keep_NA = FALSE, preview = F
   
   if(prettyValue == TRUE){
     df <- df %>% 
-      mutate(prettyValue = ifelse(grepl('%',`Series Name`, fixed = TRUE)==TRUE, paste0(round(value*100,2),'%'), 
+      mutate(prettyValue = ifelse(grepl('%',`Series Name`, fixed = TRUE)==TRUE, paste0(round(value,2),'%'), 
                                   format(round(value,0),nsmall = 0, big.mark="'")))
   }
    if(preview == TRUE){
