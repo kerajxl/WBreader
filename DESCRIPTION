@@ -1,11 +1,11 @@
 Package: WBreader
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
+Title: Read and transform data from World Bank Database 
+Version: 1.0.0
+Author: Jaroslaw Leski
 Maintainer: The package maintainer <j.leski@student.uw.edu.pl>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: The package was created to easily load data downloaded from Worldbank.    
+It accepts both csv and xlsx. The PrettyValue parameter creates a new column with readable and easy to present values.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
