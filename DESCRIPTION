@@ -4,8 +4,7 @@ Title: Read and transform data from World Bank Database
 Version: 1.0.0
 Author: Jaroslaw Leski
 Maintainer: The package maintainer <j.leski@student.uw.edu.pl>
-Description: The package was created to easily load data downloaded from Worldbank.    
-It accepts both csv and xlsx. The PrettyValue parameter creates a new column with readable and easy to present values.
+Description: The package was created to easily load data downloaded from Worldbank.    It accepts both csv and xlsx. The PrettyValue parameter creates a new column with readable and easy to present values.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
